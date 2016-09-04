@@ -12,7 +12,7 @@ app.config(["$routeProvider", function($routeProvider) {
 		.when('/news', {
 			templateUrl : 'views/news.html',
 			controller : 'NewsCtrl',
-			authenticated: false
+			authenticated: true
 		})
 		.otherwise('/', {
 			templateUrl : 'views/home.html',
