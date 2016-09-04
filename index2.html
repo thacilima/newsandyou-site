@@ -14,7 +14,8 @@
     <link type="text/css" rel="stylesheet" href="css/newsandyou.css" media="screen,projection" />
 </head>
 
-<body ng-app="NewsAndYouMusicApp">
+<body>
+    <div id="fb-root"></div>
 
     <div class="navbar-fixed">
         <nav role="navigation">
@@ -22,32 +23,12 @@
                 <a href="#" class="brand-logo hide-on-med-and-down">
                     <i class="material-icons">queue_music</i> MUSIC
                 </a>
-                <a href="#!" class="brand-logo center">NEWS & YOU</a>
-                <ul class="right hide-on-med-and-down valign-wrapper">
-                    <li><a href="index.html">Logout</a></li>
-                    <li>
-                        <img src="https://4.bp.blogspot.com/-E7uBF5R5KIA/V1Y90jZrcKI/AAAAAAAAAh4/cx9-9zMRn44M64pkQcZDSFf51CmLx7j7gCLcB/s1600/1ababa441.jpg"
-                            alt="" class="circle avatar valign">
-                    </li>
-                </ul>
+                <a href="#" class="brand-logo center">NEWS & YOU</a>
 
                 <ul id="nav-mobile" class="side-nav">
                     <li class="text-pink-orange valign-wrapper container">
                         <i style="display: inline;" class="material-icons small">queue_music</i>
                         <span class="valign">NEWS & YOU, MUSIC</span>
-                    </li>
-                    <li>
-                        <a href="index.html">
-                            <div class="row valign-wrapper">
-                                <div class="col s2">
-                                    <img src="https://4.bp.blogspot.com/-E7uBF5R5KIA/V1Y90jZrcKI/AAAAAAAAAh4/cx9-9zMRn44M64pkQcZDSFf51CmLx7j7gCLcB/s1600/1ababa441.jpg"
-                                        alt="" class="circle avatar-small valign">
-                                </div>
-                                <div class="col s10">
-                                    Logout
-                                </div>
-                            </div>
-                        </a>
                     </li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -55,7 +36,66 @@
         </nav>
     </div>
 
-    <div ng-view></div>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h2 class="header center text-pink-orange">Music news carefully selected based on what you like.</h2>
+            <div class="row center">
+                <h5 class="header col s12 light">
+                    NEWS & YOU, MUSIC is exactly what you need to be updated about your favorite musicians news.
+                </h5>
+            </div>
+            <div class="row center">
+                <a href="news.html" id="download-button" class="btn-large waves-effect waves-light light-blue darken-4">
+                    Get started with FACEBOOK Login
+                </a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center text-pink-orange"><i class="medium material-icons">schedule</i></h2>
+                        <h5 class="center">Save your time</h5>
+
+                        <p class="light">
+                            You don't need to spend time looking for your favorite musicians news. On your Facebook login, you just need to allow us
+                            to access your music info on Facebook. Then, we already know what music news you'd like to read
+                            about and you don't waste time looking for it.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center text-pink-orange"><i class="medium material-icons">lock_outline</i></h2>
+                        <h5 class="center">Your info is safe</h5>
+
+                        <p class="light">
+                            Your info you give us permission to access on Facebook is totally safe. Nobody is going to actually see or use it. It's just
+                            used by our recommender system algorithms to suggest you music news you'll actually like.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center text-pink-orange"><i class="medium material-icons">chat_bubble_outline</i></h2>
+                        <h5 class="center">Stay updated</h5>
+
+                        <p class="light">
+                            We collect news every day for you. You'll be updated on what you love about music. We collect news from NME Music News website,
+                            select what you love and make it available for you. Isn't it nice?'
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="page-footer">
         <div class="container">
@@ -103,20 +143,11 @@
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize/materialize.min.js"></script>
-    <script src="js/materialize/init.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
 
-    <script type="text/javascript" src="js/angular/angular.min.js"></script>
-    <script type="text/javascript" src="js/angular/angular-route.min.js"></script>
-    <script type="text/javascript" src="js/angular/angular-cookies.min.js"></script>
-
-    <script type="text/javascript" src="js/app/app.js"></script>
-	<script type="text/javascript" src="js/app/routes.js"></script>
-
-    <script type="text/javascript" src="js/app/factories/authFact.js"></script>
-
-	<script type="text/javascript" src="js/app/controllers/homeCtrl.js"></script>
-    <script type="text/javascript" src="js/app/controllers/newsCtrl.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script src="js/controller/loginCtrl.js"></script>
 </body>
 
 </html>

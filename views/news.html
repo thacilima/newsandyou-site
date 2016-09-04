@@ -1,0 +1,49 @@
+<div class="container">
+
+            <div class="row">
+
+                <div class="col s12" ng-repeat="article in articles">
+
+                    <a href="{{article.uriSourceNews + article.uri}}" target="_blank" class="news-link">
+                        <div class="card horizontal hoverable hide-on-small-only">
+                            <div class="card-image">
+                                <img ng-src="{{article.imageUrl}}">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <p class="news-title">{{article.title}}</p>
+                                    <p class="thin">{{article.subtitle}}</p>
+                                </div>
+                                <div class="card-action thin">
+                                    {{getFormattedDate(article.gottenDate)}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="{{article.uriSourceNews + article.uri}}" target="_blank" class="news-link">
+                        <div class="card hoverable hide-on-med-and-up">
+                            <div class="card-image">
+                                <img ng-src="{{article.imageUrl}}">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <p class="news-title">{{article.title}}</p>
+                                    <p class="thin">{{article.subtitle}}</p>
+                                    <br>
+                                    <p class="thin">{{getFormattedDate(article.gottenDate)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 center">
+                    <a class="waves-effect waves-light btn-large"  ng-hide="hideLoadMore" ng-click="loadMoreArticles()"><i class="material-icons left">expand_more</i>MORE NEWS</a>
+                </div>
+            </div>
+
+        </div>

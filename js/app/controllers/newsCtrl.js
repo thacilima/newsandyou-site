@@ -1,28 +1,26 @@
-angular.module('NewsAndYouMusicApp', [])
-    .controller('NewsController', ['$http', function ($http) {
+app.controller('NewsCtrl', ["$scope", "$http",
+    function ($scope, $http) {
         var NEWS_AND_YOU_WEBSERVICE = 'http://localhost:8080/NAndYWebService/rest/';
-        
+        // var NEWS_AND_YOU_WEBSERVICE = 'http://demo7633828.mockable.io/';
         var indexOffset = 0;
 
-        var newsCtrl = this;
+        $scope.articles = [];
 
-        newsCtrl.articles = [];
+        $scope.hideLoadMore = false;
 
-        newsCtrl.hideLoadMore = false;
-
-        newsCtrl.getAll = function () {
+        $scope.getAll = function () {
             var url = NEWS_AND_YOU_WEBSERVICE.concat('news/getAll');
             url = url.concat('?indexOffset=').concat(indexOffset);
-            
+
             $http({
-                method : "GET",
-                url : url
+                method: "GET",
+                url: url
             }).then(function succes(response) {
                 console.log(response);
-                newsCtrl.articles = newsCtrl.articles.concat(response.data);  
+                $scope.articles = $scope.articles.concat(response.data);
 
                 if (response.data.length == 0) {
-                    newsCtrl.hideLoadMore = true;
+                    $scope.hideLoadMore = true;
                 }
 
             }, function error(response) {
@@ -31,16 +29,16 @@ angular.module('NewsAndYouMusicApp', [])
             });
         };
 
-        newsCtrl.loadMoreArticles = function() {
+        $scope.loadMoreArticles = function () {
             indexOffset++;
-            newsCtrl.getAll();
+            $scope.getAll();
         }
 
-        newsCtrl.getFormattedDate = function(dateString) {
+        $scope.getFormattedDate = function (dateString) {
             var date = new Date(dateString);
             return date.toLocaleDateString()
         }
 
-        newsCtrl.getAll();
+        $scope.getAll();
 
     }]);
