@@ -1,10 +1,9 @@
-app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact" "$http",
-    function ($scope, $rootScope, $location, authFact, $http) {
+app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact", "apiFact", "$http",
+    function ($scope, $rootScope, $location, authFact, apiFact, $http) {
 
         var NEWS_AND_YOU_WEBSERVICE = '//localhost:8080/NAndYWebService/rest/';
 
-        var userId = "";
-        var allUserLikesList = [];
+        $scope.authFact = authFact;
 
         $scope.hideLoading = true;
 
@@ -13,7 +12,7 @@ app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact" "$ht
             $location.path('/news');
         }
 
-        $scope.loginError = function() {
+        $scope.loginError = function () {
             $scope.hideLoading = true;
         }
 
@@ -47,8 +46,6 @@ app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact" "$ht
                                 data: data
                             }).then(function succes(response) {
 
-                                userId = response.data.idUser;
-
                                 // Setting the user object
                                 userObj.userId = response.data.idUser;
                                 authFact.setUserObj(userObj);
@@ -59,7 +56,13 @@ app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact" "$ht
 
                                 var limit = 25;
                                 var offset = 0;
-                                getUserLikes(limit, offset, customUserLikesCallback);
+                                apiFact.syncFbFavoriteMusicians(
+                                    function () {
+                                        $scope.goToNews();
+                                    },
+                                    function () {
+                                        $scope.goToNews();
+                                    });
 
                             }, function error(response) {
                                 $scope.loginError();
@@ -80,66 +83,5 @@ app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact" "$ht
                 }
             }, { scope: 'public_profile,email,user_likes' });
         };
-
-        var getUserLikes = function (limit, offset, callback) {
-            FB.api('/', 'POST', {
-                batch: [
-                    {
-                        method: "GET",
-                        name: "get-music-likes",
-                        relative_url: "me/music?limit=" + limit + "&offset=" + offset
-                    },
-                    {
-                        method: "GET",
-                        relative_url: "?ids={result=get-music-likes:$.data.*.id}&fields=link"
-                    }
-                ]
-            }, function (response) {
-                customUserLikesCallback(limit, offset, response)
-            });
-        };
-
-        var customUserLikesCallback = function (limit, offset, response) {
-
-            if (response[1] != null) {
-                var userLikesList = JSON.parse(response[1].body);
-
-                if (userLikesList.error == null) {
-                    for (pageLikedId in userLikesList) {
-                        allUserLikesList.push(userLikesList[pageLikedId]);
-                    }
-
-                    offset += limit;
-                    getUserLikes(limit, offset, customUserLikesCallback);
-                }
-                else {
-                    if (allUserLikesList.length > 0) {
-                        var url = NEWS_AND_YOU_WEBSERVICE.concat('userModeling/modelUser');
-                        var data = {
-                            idUser: userId,
-                            attributes: allUserLikesList
-                        };
-
-                        $http({
-                            method: "POST",
-                            url: url,
-                            data: data
-                        }).then(function succes(response) {
-
-                            $scope.goToNews();
-
-                        }, function error(response) {
-                            $scope.goToNews();
-                        });
-                    }
-                    else {
-                        $scope.goToNews()
-                    }
-                }
-            }
-            else if (response[1] != null) {
-                $scope.goToNews();
-            }
-        }
 
     }]);

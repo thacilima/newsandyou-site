@@ -8,8 +8,11 @@
             </h5>
         </div>
         <div class="row center">
-            <a ng-hide="!hideLoading" ng-click="fbLogin()" id="download-button" class="btn-large waves-effect waves-light light-blue darken-4">
+            <a ng-hide="!hideLoading || (authFact.getUserObj() != null)" ng-click="fbLogin()" id="download-button" class="btn-large waves-effect waves-light light-blue darken-4">
                     Get started with FACEBOOK Login
+                </a>
+            <a ng-hide="!hideLoading || (authFact.getUserObj() == null)" ng-click="goToNews()" id="download-button" class="btn-large waves-effect waves-light">
+                    Get Started
                 </a>
         </div>
         <div ng-hide="hideLoading" class="row center">

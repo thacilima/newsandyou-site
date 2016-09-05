@@ -14,20 +14,20 @@
     <link type="text/css" rel="stylesheet" href="css/newsandyou.css" media="screen,projection" />
 </head>
 
-<body ng-app="NewsAndYouMusicApp">
+<body ng-app="NewsAndYouMusicApp" ng-controller="MainCtrl">
 
     <div class="navbar-fixed">
         <nav role="navigation">
             <div class="nav-wrapper container">
-                <a href="#" class="brand-logo hide-on-med-and-down">
+                <a ng-click="goToHome()" class="brand-logo hide-on-med-and-down pointer">
                     <i class="material-icons">queue_music</i> MUSIC
                 </a>
-                <a href="#!" class="brand-logo center">NEWS & YOU</a>
-                <ul class="right hide-on-med-and-down valign-wrapper">
-                    <li><a href="index.html">Logout</a></li>
+                <a ng-click="goToHome()" class="brand-logo center pointer">NEWS & YOU</a>
+                <ul class="right hide-on-med-and-down valign-wrapper" ng-if="authFact.getUserObj() != null">
+                    <li><a ng-click="syncFacebookData()">Sync</a></li>
+                    <li><a ng-click="fbLogout()">Logout</a></li>
                     <li>
-                        <img ng-src="https://graph.facebook.com/{{fbId}}/picture"
-                            alt="" class="circle avatar valign">
+                        <img ng-src="https://graph.facebook.com/{{authFact.getUserObj().userFbId}}/picture" alt="" class="circle avatar valign">
                     </li>
                 </ul>
 
@@ -36,12 +36,16 @@
                         <i style="display: inline;" class="material-icons small">queue_music</i>
                         <span class="valign">NEWS & YOU, MUSIC</span>
                     </li>
-                    <li>
-                        <a href="index.html">
+                    <li ng-if="authFact.getUserObj() != null">
+                        <a class="text-pink-orange" ng-click="syncFacebookData()">
+                            Sync with Facebook
+                        </a>
+                    </li>
+                    <li ng-if="authFact.getUserObj() != null">
+                        <a class="text-pink-orange" ng-click="fbLogout()">
                             <div class="row valign-wrapper">
                                 <div class="col s2">
-                                    <img ng-src="https://graph.facebook.com/{{fbId}}/picture"
-                                        alt="" class="circle avatar-small valign">
+                                    <img ng-src="https://graph.facebook.com/{{authFact.getUserObj().userFbId}}/picture" alt="" class="circle avatar-small valign">
                                 </div>
                                 <div class="col s10">
                                     Logout
@@ -50,12 +54,14 @@
                         </a>
                     </li>
                 </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
     </div>
-    
-    <main><div ng-view></div></main>
+
+    <main>
+        <div ng-view></div>
+    </main>
 
     <footer class="page-footer">
         <div class="container">
@@ -96,8 +102,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="https://br.linkedin.com/in/thaciana-lima-4a9818b4">Thaciana Lima</a> 
-                oriented by <b>João Carlos da Silva</b> and <b>Bianca Pereira</b>
+                Made by <a class="orange-text text-lighten-3" href="https://br.linkedin.com/in/thaciana-lima-4a9818b4">Thaciana Lima</a>                oriented by <b>João Carlos da Silva</b> and <b>Bianca Pereira</b>
             </div>
         </div>
     </footer>
@@ -112,11 +117,13 @@
     <script type="text/javascript" src="js/angular/angular-cookies.min.js"></script>
 
     <script type="text/javascript" src="js/app/app.js"></script>
-	<script type="text/javascript" src="js/app/routes.js"></script>
+    <script type="text/javascript" src="js/app/routes.js"></script>
 
     <script type="text/javascript" src="js/app/factories/authFact.js"></script>
+    <script type="text/javascript" src="js/app/factories/apiFact.js"></script>
 
-	<script type="text/javascript" src="js/app/controllers/homeCtrl.js"></script>
+    <script type="text/javascript" src="js/app/controllers/mainCtrl.js"></script>
+    <script type="text/javascript" src="js/app/controllers/homeCtrl.js"></script>
     <script type="text/javascript" src="js/app/controllers/newsCtrl.js"></script>
 </body>
 

@@ -22,6 +22,10 @@ img.circle.avatar-small {
     color: #ee6e73;
 }
 
+a.text-pink-orange {
+    color: #ee6e73;
+}
+
 .nme-logo {
     width: 75px;
     height: 29px;
@@ -44,4 +48,8 @@ img.circle.avatar-small {
 
 .card-image img {
     height: 210px;
+}
+
+a.pointer {
+    cursor: pointer !important;
 }

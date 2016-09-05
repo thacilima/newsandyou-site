@@ -7,6 +7,7 @@ window.fbAsyncInit = function() {
         xfbml      : true,
         version    : 'v2.5'
     });
+
 };
 
 (function(d, s, id){
@@ -16,4 +17,5 @@ window.fbAsyncInit = function() {
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
     // FB init
+    console.log("FB init");
 }(document, 'script', 'facebook-jssdk'));

@@ -1,28 +1,25 @@
 app.factory('authFact', ['$cookieStore', function ($cookieStore) {
     var authFact = {};
 
-    this.authToken = null;
-
-    authFact.setAccessToken = function(authToken) {
+    authFact.setAccessToken = function (authToken) {
         $cookieStore.put('accessToken', authToken);
     };
 
-    authFact.getAccessToken = function() {
-        authFact.authToken = $cookieStore.get('accessToken');
-        return authFact.authToken;
+    authFact.getAccessToken = function () {
+        return $cookieStore.get('accessToken');
     };
 
-    authFact.setUserObj = function(userObj) {
+    authFact.setUserObj = function (userObj) {
         $cookieStore.put('userObj', userObj);
     };
 
     authFact.getUserObj = function () {
-        var userObj = $cookieStore.get('userObj');
+        return $cookieStore.get('userObj');
+    };
 
-        if (userObj)
-            return userObj;
-
-        return null;
+    authFact.clearCookies = function () {
+        $cookieStore.remove('userObj');
+        $cookieStore.remove('accessToken');
     };
 
     return authFact;
