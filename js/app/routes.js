@@ -3,12 +3,9 @@ app.config(["$routeProvider", function($routeProvider) {
 
 		.when("/", {
 			templateUrl : 'views/home.html',
-			controller : 'HomeCtrl'
+			controller : 'HomeCtrl',
+			authenticated: false
 		})
-		// .when("/login", {
-		// 	templateUrl : 'login.html',
-		// 	controller : 'LoginCtrl'
-		// })
 		.when('/news', {
 			templateUrl : 'views/news.html',
 			controller : 'NewsCtrl',
@@ -16,14 +13,15 @@ app.config(["$routeProvider", function($routeProvider) {
 		})
 		.otherwise('/', {
 			templateUrl : 'views/home.html',
-			controller : 'HomeCtrl'
+			controller : 'HomeCtrl',
+			authenticated: false
 		});
 }]);
 
 app.run(["$rootScope", "$location", "authFact", function($rootScope, $location, authFact) {
 	$rootScope.$on('$routeChangeStart', function(event, next, current) {
 
-		/*If route is authenticated then check if the user has access token, else return to login screen*/
+		// If route is authenticated then check if the user has access token, else return to login screen
 		if (next.$$route.authenticated) {
 			var userAuth = authFact.getAccessToken();
 			if (!userAuth) {

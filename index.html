@@ -26,7 +26,7 @@
                 <ul class="right hide-on-med-and-down valign-wrapper">
                     <li><a href="index.html">Logout</a></li>
                     <li>
-                        <img src="https://4.bp.blogspot.com/-E7uBF5R5KIA/V1Y90jZrcKI/AAAAAAAAAh4/cx9-9zMRn44M64pkQcZDSFf51CmLx7j7gCLcB/s1600/1ababa441.jpg"
+                        <img ng-src="https://graph.facebook.com/{{fbId}}/picture"
                             alt="" class="circle avatar valign">
                     </li>
                 </ul>
@@ -40,7 +40,7 @@
                         <a href="index.html">
                             <div class="row valign-wrapper">
                                 <div class="col s2">
-                                    <img src="https://4.bp.blogspot.com/-E7uBF5R5KIA/V1Y90jZrcKI/AAAAAAAAAh4/cx9-9zMRn44M64pkQcZDSFf51CmLx7j7gCLcB/s1600/1ababa441.jpg"
+                                    <img ng-src="https://graph.facebook.com/{{fbId}}/picture"
                                         alt="" class="circle avatar-small valign">
                                 </div>
                                 <div class="col s10">
@@ -54,8 +54,8 @@
             </div>
         </nav>
     </div>
-
-    <div ng-view></div>
+    
+    <main><div ng-view></div></main>
 
     <footer class="page-footer">
         <div class="container">
@@ -96,7 +96,8 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="https://br.linkedin.com/in/thaciana-lima-4a9818b4">Thaciana Lima</a>                oriented by <b>João Carlos da Silva</b> and <b>Bianca Pereira</b>
+                Made by <a class="orange-text text-lighten-3" href="https://br.linkedin.com/in/thaciana-lima-4a9818b4">Thaciana Lima</a> 
+                oriented by <b>João Carlos da Silva</b> and <b>Bianca Pereira</b>
             </div>
         </div>
     </footer>

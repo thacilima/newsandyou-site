@@ -12,13 +12,17 @@ app.factory('authFact', ['$cookieStore', function ($cookieStore) {
         return authFact.authToken;
     };
 
-    authFact.getuserObj = function () {
+    authFact.setUserObj = function(userObj) {
+        $cookieStore.put('userObj', userObj);
+    };
+
+    authFact.getUserObj = function () {
         var userObj = $cookieStore.get('userObj');
 
         if (userObj)
             return userObj;
-        else
-            console.log('User object not found');
+
+        return null;
     };
 
     return authFact;
