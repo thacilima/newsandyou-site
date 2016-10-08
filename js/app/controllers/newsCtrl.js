@@ -1,6 +1,6 @@
 app.controller('NewsCtrl', ["$scope", "authFact", "$http",
     function ($scope, authFact, $http) {
-        var NEWS_AND_YOU_WEBSERVICE = '//localhost:8080/NAndYWebService/rest/';
+        var NEWS_AND_YOU_WEBSERVICE = '//thaciana-lima-apps.bitnamiapp.com/NAndYWebService/rest/';
 
         var indexOffset = 0;
 

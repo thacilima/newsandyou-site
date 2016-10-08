@@ -1,7 +1,7 @@
 app.controller('HomeCtrl', ["$scope", "$rootScope", "$location", "authFact", "apiFact", "$http",
     function ($scope, $rootScope, $location, authFact, apiFact, $http) {
 
-        var NEWS_AND_YOU_WEBSERVICE = '//localhost:8080/NAndYWebService/rest/';
+        var NEWS_AND_YOU_WEBSERVICE = '//thaciana-lima-apps.bitnamiapp.com/NAndYWebService/rest/';
 
         $scope.authFact = authFact;
 
