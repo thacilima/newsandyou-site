@@ -7,6 +7,14 @@ app.controller('MainCtrl', ["$scope", "authFact", "apiFact", "$location", "$wind
             $location.path('/');
         }
 
+        $scope.goToPrivacyPolicy = function () {
+            $location.path('/privacyPolicy');
+        }
+
+        $scope.goToTermsAndConditions = function () {
+            $location.path('/termsAndConditions');
+        }
+
         $scope.fbLogout = function () {
             FB.getLoginStatus(function (response) {
                 if (response.status === 'connected') {

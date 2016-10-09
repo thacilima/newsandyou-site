@@ -11,6 +11,14 @@ app.config(["$routeProvider", function($routeProvider) {
 			controller : 'NewsCtrl',
 			authenticated: true
 		})
+		.when('/privacyPolicy', {
+			templateUrl : 'views/pp.html',
+			authenticated: false
+		})
+		.when('/termsAndConditions', {
+			templateUrl : 'views/tc.html',
+			authenticated: false
+		})
 		.otherwise('/', {
 			templateUrl : 'views/home.html',
 			controller : 'HomeCtrl',
